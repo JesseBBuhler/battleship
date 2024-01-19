@@ -1,0 +1,30 @@
+.footer {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  display: flex;
+  align-items: baseline;
+  padding-left: 1rem;
+}
+
+.footer ul li a {
+  color: var(--primary-text-color);
+  text-decoration: none;
+}
+
+.footer ul li a:hover {
+  color: var(--secondary-text-color);
+}
+
+.footer h5 {
+  margin: 0;
+  padding: 0;
+}
+
+.footer ul {
+  margin-bottom: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  column-gap: 1rem;
+}

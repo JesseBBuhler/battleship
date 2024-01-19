@@ -1,0 +1,16 @@
+.game {
+}
+
+.toggleGrid {
+  background-color: var(--secondary-bg-color);
+}
+
+.targetGrid {
+}
+
+.oceanGrid {
+}
+
+.invisible {
+  display: none;
+}
