@@ -15,8 +15,11 @@ code {
 :root {
   --primary-bg-color: #2f394d;
   --secondary-bg-color: #a0a0a0;
+  --primary-grid-color: #2db5d7;
+  --secondary-grid-color: #49bedb;
+  --tertiary-grid-color: #77c3d8;
   --player-1-color: #f2545b;
-  --player-2-color: #75b8c8;
+  --player-2-color: #5ebfd7;
   --primary-text-color: #ffffff;
   --secondary-text-color: #000000;
 }

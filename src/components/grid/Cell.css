@@ -1,0 +1,21 @@
+.cell {
+  background-color: var(--primary-grid-color);
+  border: solid 1px var(--secondary-grid-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+}
+
+.circle.ocean {
+  background-color: var(--tertiary-grid-color);
+}
+
+.circle.target {
+  background-color: var(--player-1-color);
+}

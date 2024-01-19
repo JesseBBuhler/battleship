@@ -1,4 +1,4 @@
-import Square from "./Square";
+import Cell from "./Cell";
 import "./Grid.css";
 
 const Grid = (props) => {
@@ -21,7 +21,7 @@ const Grid = (props) => {
   return (
     <div className="grid">
       {gridLine.map((cell, index) => {
-        return <Square key={index} cell={cell}></Square>;
+        return <Cell key={index} cell={cell}></Cell>;
       })}
     </div>
   );
