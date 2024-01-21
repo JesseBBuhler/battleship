@@ -1,5 +1,5 @@
 import Cell from "./Cell";
-import "./Grid.css";
+import "../../pages/Game.css";
 
 const Grid = (props) => {
   const makeGridLine = () => {
@@ -18,6 +18,7 @@ const Grid = (props) => {
     return arr;
   };
   const gridLine = makeGridLine();
+  console.log(gridLine);
   return (
     <div className="grid">
       {gridLine.map((cell, index) => {

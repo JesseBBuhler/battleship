@@ -1,0 +1,48 @@
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.controlPanel {
+  background-color: var(--secondary-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.toggleGrid {
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  padding: 0.5rem;
+}
+
+.invisible {
+  display: none;
+}
+
+.gridContainer {
+  width: 70vh;
+  height: 70vh;
+  position: relative;
+}
+
+.background {
+  position: absolute;
+}
+
+.oceanGrid {
+  position: absolute;
+}
+
+.gridSpacer {
+  text-align: center;
+}
+
+.grid {
+  position: absolute;
+  display: grid;
+  grid-template-rows: 1fr repeat(10, 2fr);
+  grid-template-columns: 1fr repeat(10, 2fr);
+  width: 100%;
+  height: 100%;
+}
