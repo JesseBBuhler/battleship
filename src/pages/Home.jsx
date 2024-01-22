@@ -1,40 +1,56 @@
 import Grid from "../components/grid/Grid.jsx";
-import ShipGrid from "../components/grid/ShipGrid.jsx";
 import { useState } from "react";
-import setUpGrid from "../functions/setUpGrid.jsx";
+import setUpGame from "../functions/setUpGame.jsx";
 import "./Game.css";
 
 const Home = () => {
-  const backgroundGrid = setUpGrid("background");
-  const [targetGrid, setTargetGrid] = useState(setUpGrid("target"));
-  const [shipPositions, setShipPositions] = useState();
-  const [view, setView] = useState("ocean");
+  const [game, setGame] = useState(setUpGame());
+
+  const onCellClick = () => {
+    alert("click");
+  };
 
   const swtichView = () => {
-    view === "ocean" ? setView("target") : setView("ocean");
+    game.view === "ocean"
+      ? setGame((prevGame) => ({
+          ...prevGame,
+          view: "target",
+        }))
+      : setGame((prevGame) => ({
+          ...prevGame,
+          view: "ocean",
+        }));
   };
 
   return (
     <div className="game">
       <div className="controlPanel">
         <div className="toggleGrid" onClick={() => swtichView()}>{`Switch to ${
-          view === "ocean" ? "target" : "ocean"
+          game.view === "ocean" ? "target" : "ocean"
         } grid`}</div>
       </div>
       <div className="gridContainer">
         <div
           className={`oceanGridContainer ${
-            view === "ocean" ? "" : "invisible"
+            game.view === "ocean" ? "" : "invisible"
           }`}
         >
-          <Grid gridArr={backgroundGrid}></Grid>
-          <ShipGrid
-            shipPositions={shipPositions}
-            setShipPositions={setShipPositions}
-          ></ShipGrid>
+          {game.player === 1 ? (
+            <Grid gridArr={game.player1Grid} onCellClick={onCellClick}></Grid>
+          ) : (
+            <Grid gridArr={game.player2Grid} onCellClick={onCellClick}></Grid>
+          )}
         </div>
-        <div className={`targetGrid ${view === "target" ? "" : "invisible"}`}>
-          <Grid gridArr={targetGrid} setGrid={setTargetGrid}></Grid>
+        <div
+          className={`targetGridContainer ${
+            game.view === "target" ? "" : "invisible"
+          }`}
+        >
+          {game.player === 1 ? (
+            <Grid gridArr={game.player2Grid} onCellClick={onCellClick}></Grid>
+          ) : (
+            <Grid gridArr={game.player1Grid} onCellClick={onCellClick}></Grid>
+          )}
         </div>
       </div>
     </div>

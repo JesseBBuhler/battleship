@@ -18,7 +18,6 @@ const Grid = (props) => {
     return arr;
   };
   const gridLine = makeGridLine();
-  console.log(gridLine);
   return (
     <div className="grid">
       {gridLine.map((cell, index) => {
