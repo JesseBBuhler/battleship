@@ -6,8 +6,8 @@ import "./Game.css";
 const Home = () => {
   const [game, setGame] = useState(setUpGame());
 
-  const onCellClick = () => {
-    alert("click");
+  const onCellClick = (cellLoc) => {
+    alert(`Row:${cellLoc.row}\nCol:${cellLoc.col}`);
   };
 
   const swtichView = () => {

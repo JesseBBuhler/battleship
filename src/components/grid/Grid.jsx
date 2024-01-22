@@ -21,7 +21,9 @@ const Grid = (props) => {
   return (
     <div className="grid">
       {gridLine.map((cell, index) => {
-        return <Cell key={index} cell={cell}></Cell>;
+        return (
+          <Cell key={index} cell={cell} onCellClick={props.onCellClick}></Cell>
+        );
       })}
     </div>
   );
