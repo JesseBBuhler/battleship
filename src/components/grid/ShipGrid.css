@@ -2,6 +2,22 @@
   background-color: gray;
   justify-self: center;
   align-self: center;
+  --destroyer-length: 2;
+  --cruiser-length: 3;
+  --submarine-length: 3;
+  --battleship-length: 4;
+  --carrier-length: 5;
+
+  --destroyer-row: 2;
+  --destroyer-col: 2;
+  --cruiser-row: 5;
+  --cruiser-col: 2;
+  --submarine-row: 9;
+  --submarine-col: 2;
+  --battleship-row: 4;
+  --battleship-col: 4;
+  --carrier-row: 8;
+  --carrier-col: 4;
 }
 
 .top-bottom {
@@ -22,27 +38,62 @@
   border-bottom-right-radius: 50%;
 }
 
-.one {
-  grid-column: 2 / 3;
-  grid-row: 2 / 4;
+.destroyer.top-bottom {
+  grid-column: var(--destroyer-col) / calc(var(--destroyer-col) + 1);
+  grid-row: var(--destroyer-row) /
+    calc(var(--destroyer-row) + var(--destroyer-length));
 }
 
-.two {
-  grid-column: 2 / 3;
-  grid-row: 5 / 8;
+.destroyer.left-right {
+  grid-column: var(--destroyer-col) /
+    calc(var(--destroyer-col) + var(--destroyer-length));
+  grid-row: var(--destroyer-row) / calc(var(--destroyer-row) + 1);
 }
 
-.three {
-  grid-column: 2 / 3;
-  grid-row: 9 / 12;
+.cruiser.top-bottom {
+  grid-column: var(--cruiser-col) / calc(var(--cruiser-col) + 1);
+  grid-row: var(--cruiser-row) /
+    calc(var(--cruiser-row) + var(--cruiser-length));
 }
 
-.four {
-  grid-column: 4 / 8;
-  grid-row: 4 / 5;
+.cruiser.left-right {
+  grid-column: var(--cruiser-col) /
+    calc(var(--cruiser-col) + var(--cruiser-length));
+  grid-row: var(--cruiser-row) / calc(var(--cruiser-row) + 1);
 }
 
-.five {
-  grid-column: 4 / 9;
-  grid-row: 8 / 9;
+.submarine.top-bottom {
+  grid-column: var(--submarine-col) / calc(var(--submarine-col) + 1);
+  grid-row: var(--submarine-row) /
+    calc(var(--submarine-row) + var(--submarine-length));
+}
+
+.submarine.left-right {
+  grid-column: var(--submarine-col) /
+    calc(var(--submarine-col) + var(--submarine-length));
+  grid-row: var(--submarine-row) / calc(var(--submarine-row) + 1);
+}
+
+.battleship.top-bottom {
+  grid-column: var(--battleship-col) / calc(var(--battleship-col) + 1);
+  grid-row: var(--battleship-row) /
+    calc(var(--battleship-row) + var(--battleship-length));
+}
+
+.battleship.left-right {
+  grid-column: var(--battleship-col) /
+    calc(var(--battleship-col) + var(--battleship-length));
+  grid-row: var(--battleship-row) / calc(var(--battleship-row) + 1);
+}
+
+.carrier.top-bottom {
+  grid-column: var(--carrier-col) / calc(var(--carrier-col) + 1);
+  grid-row: var(--carrier-row) /
+    calc(var(--carrier-row) + var(--carrier-length));
+}
+
+.carrier.left-right {
+  grid-column: var(--carrier-col) /
+    calc(var(--carrier-col) + var(--carrier-length));
+  grid-row: var(--carrier-row) / calc(var(--carrier-row) + 1);
 }
