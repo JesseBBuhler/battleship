@@ -1,6 +1,12 @@
-.game {
+.dashboard {
   display: flex;
   flex-direction: row;
+}
+
+.getReady {
+  width: 70vh;
+  height: 70vh;
+  position: relative;
 }
 
 .controlPanel {

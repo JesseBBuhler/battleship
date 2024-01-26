@@ -10,7 +10,7 @@ const Cell = (props) => {
       }}
     >
       {cell.type !== "index" ? (
-        <div className={`circle ${cell.type}`}></div>
+        <div className={`circle ${cell.data}`}></div>
       ) : (
         cell.data
       )}
