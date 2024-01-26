@@ -2,6 +2,7 @@ import Grid from "../components/grid/Grid.jsx";
 import { useState } from "react";
 import "./Game.css";
 import setUpGrid from "../functions/setUpGrid.jsx";
+import addShip from "../functions/addShip.jsx";
 
 const Home = () => {
   const [player1Grid, setplayer1Grid] = useState(setUpGrid());
@@ -62,6 +63,30 @@ const Home = () => {
     setPlayerReady(false);
   };
 
+  const startGame = () => {
+    const ship1 = {
+      name: "battleship",
+      length: 4,
+      health: 4,
+      head: { row: 0, col: 0 },
+      direction: "horizontal",
+    };
+
+    const ship2 = {
+      name: "submarine",
+      length: 3,
+      health: 3,
+      head: { row: 1, col: 3 },
+      direction: "vertical",
+    };
+
+    alert(addShip(ship1, player1Grid, setplayer1Grid));
+    alert(addShip(ship1, player2Grid, setplayer2Grid));
+    alert(addShip(ship2, player1Grid, setplayer1Grid));
+    alert(addShip(ship2, player2Grid, setplayer2Grid));
+    makePlayerReady();
+  };
+
   return (
     <>
       <div className={`getReady ${playerReady ? "invisible" : ""}`}>
@@ -73,7 +98,7 @@ const Home = () => {
             </h4>
           </div>
         ) : (
-          <h4 className="nextTurnButton" onClick={() => makePlayerReady()}>
+          <h4 className="nextTurnButton" onClick={() => startGame()}>
             Start Game
           </h4>
         )}

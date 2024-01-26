@@ -4,7 +4,7 @@ const setUpGrid = () => {
   for (let i = 0; i < 10; i++) {
     const row = [];
     for (let j = 0; j < 10; j++) {
-      let cell = { type: "board", loc: { row: i, col: j }, data: "hello" };
+      let cell = { type: "board", loc: { row: i, col: j }, data: "blank" };
       row.push(cell);
     }
     gridArr.push(row);

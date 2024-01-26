@@ -18,10 +18,10 @@
   background-color: red;
 }
 
-.circle.hello {
-  background-color: pink;
-}
-
 .circle.miss {
   background-color: white;
+}
+
+.circle.ship {
+  background-color: gray;
 }
