@@ -76,14 +76,30 @@ const Home = () => {
       name: "submarine",
       length: 3,
       health: 3,
-      head: { row: 1, col: 3 },
+      head: { row: 2, col: 3 },
+      direction: "vertical",
+    };
+
+    const ship3 = {
+      name: "battleship",
+      length: 4,
+      health: 4,
+      head: { row: 7, col: 6 },
+      direction: "horizontal",
+    };
+
+    const ship4 = {
+      name: "submarine",
+      length: 3,
+      health: 3,
+      head: { row: 3, col: 3 },
       direction: "vertical",
     };
 
     alert(addShip(ship1, player1Grid, setplayer1Grid));
-    alert(addShip(ship1, player2Grid, setplayer2Grid));
     alert(addShip(ship2, player1Grid, setplayer1Grid));
-    alert(addShip(ship2, player2Grid, setplayer2Grid));
+    alert(addShip(ship3, player2Grid, setplayer2Grid));
+    alert(addShip(ship4, player2Grid, setplayer2Grid));
     makePlayerReady();
   };
 

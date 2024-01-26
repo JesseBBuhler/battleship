@@ -4,7 +4,7 @@ const addShip = (ship, grid, setGrid) => {
   });
 
   if (ship.direction === "vertical") {
-    if (ship.head.row + ship.length >= tempGrid.length) {
+    if (ship.head.row + ship.length > tempGrid.length) {
       return false;
     }
     for (let i = 0; i < ship.length; i++) {
@@ -16,7 +16,7 @@ const addShip = (ship, grid, setGrid) => {
       tempGrid[ship.head.row + i][ship.head.col].data = "ship";
     }
   } else {
-    if (ship.head.col + ship.length >= tempGrid[0].length) {
+    if (ship.head.col + ship.length > tempGrid[0].length) {
       return false;
     }
     for (let i = 0; i < ship.length; i++) {
