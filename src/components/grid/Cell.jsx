@@ -10,7 +10,13 @@ const Cell = (props) => {
       }}
     >
       {cell.type !== "index" ? (
-        <div className={`circle ${cell.data}`}></div>
+        <div
+          className={`circle ${
+            props.gridType === "target" && cell.data === "ship"
+              ? "blank"
+              : cell.data
+          }`}
+        ></div>
       ) : (
         cell.data
       )}

@@ -22,7 +22,12 @@ const Grid = (props) => {
     <div className="grid">
       {gridLine.map((cell, index) => {
         return (
-          <Cell key={index} cell={cell} onCellClick={props.onCellClick}></Cell>
+          <Cell
+            key={index}
+            cell={cell}
+            gridType={props.gridType}
+            onCellClick={props.onCellClick}
+          ></Cell>
         );
       })}
     </div>

@@ -142,9 +142,17 @@ const Home = () => {
             }`}
           >
             {player === 1 ? (
-              <Grid gridArr={player1Grid} onCellClick={() => {}}></Grid>
+              <Grid
+                gridArr={player1Grid}
+                gridType={"ocean"}
+                onCellClick={() => {}}
+              ></Grid>
             ) : (
-              <Grid gridArr={player2Grid} onCellClick={() => {}}></Grid>
+              <Grid
+                gridArr={player2Grid}
+                gridType={"ocean"}
+                onCellClick={() => {}}
+              ></Grid>
             )}
           </div>
           <div
@@ -153,9 +161,17 @@ const Home = () => {
             }`}
           >
             {player === 1 ? (
-              <Grid gridArr={player2Grid} onCellClick={onCellClick}></Grid>
+              <Grid
+                gridArr={player2Grid}
+                gridType={"target"}
+                onCellClick={onCellClick}
+              ></Grid>
             ) : (
-              <Grid gridArr={player1Grid} onCellClick={onCellClick}></Grid>
+              <Grid
+                gridArr={player1Grid}
+                gridType={"target"}
+                onCellClick={onCellClick}
+              ></Grid>
             )}
           </div>
         </div>
