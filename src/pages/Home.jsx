@@ -3,6 +3,8 @@ import { useState } from "react";
 import "./Game.css";
 import setUpGrid from "../functions/setUpGrid.jsx";
 import addShip from "../functions/addShip.jsx";
+import makeShips from "../functions/makeShips.jsx";
+import DockYard from "../components/DockYard.jsx";
 
 const Home = () => {
   const [player1Grid, setplayer1Grid] = useState(setUpGrid());
@@ -11,12 +13,20 @@ const Home = () => {
   const [view, setView] = useState("ocean");
   const [playerReady, setPlayerReady] = useState(false);
   const [shotFired, setShotFired] = useState(false);
+  const [shipsPlaced, setShipsPlaced] = useState(false);
+  const [ships, setShips] = useState(makeShips());
+  const [selectedShip, setSelectedShip] = useState(-1);
 
   const togglePlayer = () => {
     player === 1 ? setPlayer(2) : setPlayer(1);
   };
 
-  const onCellClick = (cellLoc) => {
+  const toggleShipsPlaced = () => {
+    alert("toggle");
+    shipsPlaced ? setShipsPlaced(false) : setShipsPlaced(true);
+  };
+
+  const fireShot = (cellLoc) => {
     if (shotFired) return 0;
 
     let row = cellLoc.row;
@@ -48,7 +58,7 @@ const Home = () => {
     setShotFired(true);
   };
 
-  const swtichView = () => {
+  const switchView = () => {
     view === "ocean" ? setView("target") : setView("ocean");
   };
 
@@ -63,44 +73,36 @@ const Home = () => {
     setPlayerReady(false);
   };
 
-  const startGame = () => {
-    const ship1 = {
-      name: "battleship",
-      length: 4,
-      health: 4,
-      head: { row: 0, col: 0 },
-      direction: "horizontal",
-    };
+  const toggleShipDirection = (shipIndex) => {
+    let tempShips = ships.slice();
+    tempShips[shipIndex].direction === "vertical"
+      ? (tempShips[shipIndex].direction = "horizontal")
+      : (tempShips[shipIndex].direction = "vertical");
 
-    const ship2 = {
-      name: "submarine",
-      length: 3,
-      health: 3,
-      head: { row: 2, col: 3 },
-      direction: "vertical",
-    };
+    setShips(tempShips);
+  };
 
-    const ship3 = {
-      name: "battleship",
-      length: 4,
-      health: 4,
-      head: { row: 7, col: 6 },
-      direction: "horizontal",
-    };
+  const selectShip = (shipIndex) => {
+    setSelectedShip(shipIndex);
+  };
 
-    const ship4 = {
-      name: "submarine",
-      length: 3,
-      health: 3,
-      head: { row: 3, col: 3 },
-      direction: "vertical",
-    };
+  const removeShip = (shipIndex) => {};
 
-    alert(addShip(ship1, player1Grid, setplayer1Grid));
-    alert(addShip(ship2, player1Grid, setplayer1Grid));
-    alert(addShip(ship3, player2Grid, setplayer2Grid));
-    alert(addShip(ship4, player2Grid, setplayer2Grid));
-    makePlayerReady();
+  const callAddShip = (loc) => {
+    let tempShips = ships.slice();
+
+    tempShips[selectedShip].head.row = loc.row;
+    tempShips[selectedShip].head.col = loc.col;
+    setShips(tempShips);
+
+    let sendAlert = false;
+    player === 1
+      ? (sendAlert = addShip(ships[selectedShip], player1Grid, setplayer1Grid))
+      : (sendAlert = addShip(ships[selectedShip], player2Grid, setplayer2Grid));
+
+    if (sendAlert) {
+      alert("Not a valid ship placement");
+    }
   };
 
   return (
@@ -114,7 +116,7 @@ const Home = () => {
             </h4>
           </div>
         ) : (
-          <h4 className="nextTurnButton" onClick={() => startGame()}>
+          <h4 className="nextTurnButton" onClick={() => makePlayerReady()}>
             Start Game
           </h4>
         )}
@@ -124,55 +126,91 @@ const Home = () => {
         <div className="controlPanel">
           <div className="playerDisplay">{`Player: ${player}`}</div>
           <div
-            className="toggleGrid"
-            onClick={() => swtichView()}
-          >{`Switch to ${view === "ocean" ? "target" : "ocean"} grid`}</div>
-          <div
-            className={`endTurnButton ${shotFired ? "" : "invisible"}`}
-            onClick={() => endTurn()}
+            className={`dockYardContainer ${!shipsPlaced ? "" : "invisible"}`}
+            onClick={() => toggleShipsPlaced()}
           >
-            End Turn
+            <DockYard
+              ships={ships}
+              toggleShipDirection={toggleShipDirection}
+              selectShip={selectShip}
+              removeShip={removeShip}
+            ></DockYard>
+          </div>
+          <div
+            className={`gameButtonsContainer ${shipsPlaced ? "" : "invisible"}`}
+          >
+            <div
+              className="toggleGrid"
+              onClick={() => switchView()}
+            >{`Switch to ${view === "ocean" ? "target" : "ocean"} grid`}</div>
+            <div
+              className={`endTurnButton ${shotFired ? "" : "invisible"}`}
+              onClick={() => endTurn()}
+            >
+              End Turn
+            </div>
           </div>
         </div>
 
         <div className={`gridContainer`}>
           <div
-            className={`oceanGridContainer ${
-              view === "ocean" ? "" : "invisible"
-            }`}
+            className={`placeGridContainer ${!shipsPlaced ? "" : "invisible"}`}
           >
             {player === 1 ? (
               <Grid
                 gridArr={player1Grid}
-                gridType={"ocean"}
-                onCellClick={() => {}}
+                gridType={"placeShips"}
+                onCellClick={callAddShip}
               ></Grid>
             ) : (
               <Grid
                 gridArr={player2Grid}
-                gridType={"ocean"}
-                onCellClick={() => {}}
+                gridType={"placeShips"}
+                onCellClick={callAddShip}
               ></Grid>
             )}
           </div>
           <div
-            className={`targetGridContainer ${
-              view === "target" ? "" : "invisible"
-            }`}
+            className={`gameGridsContainer${shipsPlaced ? "" : "invisible"}`}
           >
-            {player === 1 ? (
-              <Grid
-                gridArr={player2Grid}
-                gridType={"target"}
-                onCellClick={onCellClick}
-              ></Grid>
-            ) : (
-              <Grid
-                gridArr={player1Grid}
-                gridType={"target"}
-                onCellClick={onCellClick}
-              ></Grid>
-            )}
+            <div
+              className={`oceanGridContainer ${
+                view === "ocean" ? "" : "invisible"
+              }`}
+            >
+              {player === 1 ? (
+                <Grid
+                  gridArr={player1Grid}
+                  gridType={"ocean"}
+                  onCellClick={() => {}}
+                ></Grid>
+              ) : (
+                <Grid
+                  gridArr={player2Grid}
+                  gridType={"ocean"}
+                  onCellClick={() => {}}
+                ></Grid>
+              )}
+            </div>
+            <div
+              className={`targetGridContainer ${
+                view === "target" ? "" : "invisible"
+              }`}
+            >
+              {player === 1 ? (
+                <Grid
+                  gridArr={player2Grid}
+                  gridType={"target"}
+                  onCellClick={fireShot}
+                ></Grid>
+              ) : (
+                <Grid
+                  gridArr={player1Grid}
+                  gridType={"target"}
+                  onCellClick={fireShot}
+                ></Grid>
+              )}
+            </div>
           </div>
         </div>
       </div>

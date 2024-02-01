@@ -16,6 +16,11 @@
   justify-content: space-around;
 }
 
+.dockYardContainer {
+  background-color: var(--primary-bg-color);
+  color: white;
+}
+
 .toggleGrid {
   background-color: var(--primary-bg-color);
   color: var(--primary-text-color);
